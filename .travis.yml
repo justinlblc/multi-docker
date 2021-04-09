@@ -1,0 +1,29 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t justinlblc/react-test -f ./client/Dockerfile.dev ./client
+
+script: #primary test running seccion
+  - docker run -e CI=true justinlblc/react-test npm test -- --coverage #to make sure we exit the test
+
+after_success:                    #creation of production version
+  - docker build -t justinlblc/multi-client -f ./client
+  - docker build -t justinlblc/multi-nginx -f ./nginx
+  - docker build -t justinlblc/multi-server -f ./server
+  - docker build -t justinlblc/multi-worker -f ./worker
+  #take those images and push them to docker hub
+  #we need to log in to the docker CLI first
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  #push to docke now
+  - docker push justinlblc/multi-client
+  - docker push justinlblc/multi-nginx
+  - docker push justinlblc/multi-server
+  - docker push justinlblc/multi-worker
+
+
+
+
+
