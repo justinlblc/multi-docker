@@ -22,6 +22,7 @@ after_success:                    #creation of production version
   - docker push justinlblc/multi-nginx
   - docker push justinlblc/multi-server
   - docker push justinlblc/multi-worker
+  #ça me casse les couilles
 
 
 
