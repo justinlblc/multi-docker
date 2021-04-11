@@ -24,17 +24,7 @@ after_success:                    #creation of production version
   - docker push justinlblc/multi-worker
 
 #Deployment:
- deploy:
-  provider: elasticbeanstalk #no dashes because not an array
-  region: us-east-2
-  app: multi-docker
-  env: Multidocker-env
-  bucket_name: elasticbeanstalk-us-east-2-586516611809
-  bucker-path: docker-multi
-  on:
-    branch: master
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
+ 
 
 
 
