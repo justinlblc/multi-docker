@@ -18,10 +18,10 @@ after_success:                    #creation of production version
   #we need to log in to the docker CLI first
   - docker login -u "$DOCKER_ID" -p "$DOCKER_PASSWORD" docker.io
   #push to docke now
-  - sudo docker push justinlblc/multi-client
-  - sudo docker push justinlblc/multi-nginx
-  - sudo docker push justinlblc/multi-server
-  - sudo docker push justinlblc/multi-worker
+  - docker push justinlblc/multi-client
+  - docker push justinlblc/multi-nginx
+  - docker push justinlblc/multi-server
+  - docker push justinlblc/multi-worker
 
 #Deployment:
 deploy:
