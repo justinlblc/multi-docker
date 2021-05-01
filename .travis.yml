@@ -16,13 +16,12 @@ after_success:                    #creation of production version
   - docker build -t justinlblc/multi-worker ./worker
   #take those images and push them to docker hub
   #we need to log in to the docker CLI first
-  - sudo su -p "$SUDO_PASSWORD"
-  - docker login -u "$DOCKER_ID" -p "$DOCKER_PASSWORD" docker.io
+  - sudo docker login -u "$DOCKER_ID" -p "$DOCKER_PASSWORD" docker.io
   #push to docke now
-  - docker push justinlblc/multi-client
-  - docker push justinlblc/multi-nginx
-  - docker push justinlblc/multi-server
-  - docker push justinlblc/multi-worker
+  - sudo docker push justinlblc/multi-client
+  - sudo docker push justinlblc/multi-nginx
+  - sudo docker push justinlblc/multi-server
+  - sudo docker push justinlblc/multi-worker
 
 #Deployment:
 deploy:
